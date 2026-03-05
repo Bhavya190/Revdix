@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Facebook, Twitter, Linkedin, Instagram, Quote, Mail, Phone, MapPin } from "lucide-react";
 
 const carouselItems = [
   {
@@ -36,13 +37,40 @@ const carouselItems = [
   }
 ];
 
+const reviews = [
+  {
+    name: "John Miller",
+    designation: "CEO, Global Tradings",
+    text: "Highly professional service. They made our import process completely hassle-free and ensured quality at every step. Their attention to detail is unmatched in the industry.",
+    rating: 5
+  },
+  {
+    name: "Sarah Chen",
+    designation: "Procurement Manager, East-West Co.",
+    text: "Revdix has been our reliable partner for over two years. Their sourcing expertise helped us find the best Indian spices for our international stores.",
+    rating: 5
+  },
+  {
+    name: "Ahmed Hassan",
+    designation: "Director, Luxe Furniture",
+    text: "Transparent deals and on-time delivery. We highly recommend Revdix for anyone looking for reliable furniture exports from India.",
+    rating: 5
+  },
+  {
+    name: "Elena Rodriguez",
+    designation: "Retail Operations, EuroStyle",
+    text: "The quality of leather goods we received was exceptional. Their communication throughout the shipping process was proactive and helpful.",
+    rating: 5
+  }
+];
+
 function CarouselSection() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % carouselItems.length);
-    }, 10000);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -66,11 +94,11 @@ function CarouselSection() {
             className="hero-slide-bg"
             style={{ backgroundImage: `url("${item.image}")` }}
           />
-          <div className="hero-overlay" style={{ background: 'rgba(0,0,0,0.5)' }}></div>
+          <div className="hero-overlay"></div>
           <div className="container" style={{ zIndex: 2 }}>
-            <p style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 'bold', marginBottom: '1rem' }}>{item.subtitle}</p>
-            <h1 style={{ fontSize: '4rem', marginBottom: '1rem' }}>{item.title}</h1>
-            <p style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 2.5rem auto', opacity: '0.9' }}>{item.desc}</p>
+            <p style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: '800', marginBottom: '1.5rem', fontSize: '1.1rem' }}>{item.subtitle}</p>
+            <h1 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', color: '#fff', textShadow: '2px 2px 10px rgba(0,0,0,0.3)' }}>{item.title}</h1>
+            <p style={{ fontSize: '1.3rem', maxWidth: '700px', margin: '0 auto 3rem auto', opacity: '0.95', color: '#fff' }}>{item.desc}</p>
             <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
               <a href="#services" className="btn-premium btn-primary">Our Services</a>
               <a href="#contact" className="btn-premium btn-outline">Contact Us</a>
@@ -80,21 +108,22 @@ function CarouselSection() {
       ))}
 
       {/* Controls */}
-      <button onClick={prevSlide} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '2rem', cursor: 'pointer', zIndex: 10, padding: '1rem', borderRadius: '50%' }}>❮</button>
-      <button onClick={nextSlide} style={{ position: 'absolute', right: '2rem', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '2rem', cursor: 'pointer', zIndex: 10, padding: '1rem', borderRadius: '50%' }}>❯</button>
+      <button onClick={prevSlide} style={{ position: 'absolute', left: '2rem', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10, width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: '0.3s' }} className="carousel-btn">❮</button>
+      <button onClick={nextSlide} style={{ position: 'absolute', right: '2rem', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: '1.5rem', cursor: 'pointer', zIndex: 10, width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: '0.3s' }} className="carousel-btn">❯</button>
 
       {/* Dots */}
-      <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '1rem', zIndex: 10 }}>
+      <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '1rem', zIndex: 10 }}>
         {carouselItems.map((_, i) => (
           <div
             key={i}
             onClick={() => setCurrent(i)}
             style={{
-              width: '12px',
-              height: '12px',
-              borderRadius: '50%',
-              background: i === current ? 'var(--secondary-color)' : 'rgba(255,255,255,0.3)',
-              cursor: 'pointer'
+              width: i === current ? '40px' : '10px',
+              height: '10px',
+              borderRadius: '10px',
+              background: i === current ? 'var(--primary-color)' : 'rgba(255,255,255,0.3)',
+              cursor: 'pointer',
+              transition: 'all 0.4s ease'
             }}
           />
         ))}
@@ -103,39 +132,113 @@ function CarouselSection() {
   );
 }
 
+function ReviewSection() {
+  const [currentReview, setCurrentReview] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="section-padding" style={{ background: '#fcfcfc' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <h4 style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>Testimonials</h4>
+          <h2 style={{ fontSize: '2.5rem', color: 'var(--text-dark)' }}>Client Success Stories</h2>
+          <div style={{ width: '60px', height: '3px', background: 'var(--primary-color)', margin: '1rem auto' }}></div>
+        </div>
+
+        <div className="reviews-container">
+          {reviews.map((review, index) => (
+            <div key={index} className={`review-slide ${index === currentReview ? 'active' : ''}`}>
+              <div className="testimonial-card">
+                <Quote size={50} style={{ color: 'var(--primary-color)', opacity: 0.1, marginBottom: '2rem' }} />
+                <p className="testimonial-quote">"{review.text}"</p>
+                <div style={{ color: 'var(--primary-color)', marginBottom: '1.5rem', fontSize: '1.2rem' }}>
+                  {"★".repeat(review.rating)}
+                </div>
+                <div style={{ fontWeight: '800', fontSize: '1.2rem', color: 'var(--text-dark)' }}>{review.name}</div>
+                <div style={{ fontSize: '0.9rem', color: 'var(--primary-color)', textTransform: 'uppercase', letterSpacing: '1px' }}>{review.designation}</div>
+              </div>
+            </div>
+          ))}
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)' }}>
+            {reviews.map((_, i) => (
+              <div
+                key={i}
+                onClick={() => setCurrentReview(i)}
+                style={{
+                  width: '12px',
+                  height: '12px',
+                  borderRadius: '50%',
+                  background: i === currentReview ? 'var(--primary-color)' : '#ddd',
+                  cursor: 'pointer',
+                  transition: '0.3s'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div>
       {/* Top Bar */}
       <div className="top-bar">
         <div className="container">
           <div className="top-bar-links">
-            <span>📧 info@revdixexim.com</span>
-            <span>📞 +91 00000 00000</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Mail size={12} /> info@revdixexim.com</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><Phone size={12} /> +91 00000 00000</span>
           </div>
-          <div className="top-bar-links">
-            <a href="#">FB</a>
-            <a href="#">TW</a>
-            <a href="#">LN</a>
-            <a href="#">IG</a>
+          <div className="top-bar-links" style={{ gap: '1rem' }}>
+            <a href="#" style={{ opacity: 0.9 }}><Facebook size={14} /></a>
+            <a href="#" style={{ opacity: 0.9 }}><Twitter size={14} /></a>
+            <a href="#" style={{ opacity: 0.9 }}><Linkedin size={14} /></a>
+            <a href="#" style={{ opacity: 0.9 }}><Instagram size={14} /></a>
           </div>
         </div>
       </div>
 
       {/* Header */}
-      <nav className="glass-nav">
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '90px' }}>
+      <nav className={`glass-nav ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '80px' }}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Image
               src="/images/revdix logo wo bg .png"
               alt="Revdix Exim Logo"
-              width={160}
-              height={55}
-              style={{ objectFit: 'contain' }}
+              width={150}
+              height={50}
+              style={{
+                objectFit: 'contain',
+                filter: scrolled ? 'none' : 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+              }}
               priority
             />
           </div>
-          <ul style={{ display: 'flex', gap: '2rem', fontWeight: '600', textTransform: 'uppercase', fontSize: '0.9rem' }}>
+          <ul style={{ display: 'flex', gap: '2rem', fontWeight: '800', textTransform: 'uppercase', fontSize: '0.85rem', color: scrolled ? 'var(--text-dark)' : '#fff' }}>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">What We Do</a></li>
@@ -143,7 +246,7 @@ export default function Home() {
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <a href="#contact" className="btn-premium btn-primary" style={{ padding: '0.6rem 1.8rem' }}>Enquiry Now</a>
+          <a href="#contact" className="btn-premium btn-primary">Enquiry Now</a>
         </div>
       </nav>
 
@@ -155,24 +258,26 @@ export default function Home() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <div>
-              <h4 style={{ color: 'var(--secondary-color)', marginBottom: '1rem' }}>─── About Revdix ───</h4>
-              <h2 style={{ fontSize: '2.8rem', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>Expert Import Export Solutions</h2>
-              <p style={{ lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+              <h4 className="text-royal" style={{ marginBottom: '1rem' }}>─── About Revdix ───</h4>
+              <h2 style={{ fontSize: '2.8rem', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>Expert <span className="text-royal">Import Export</span> Solutions</h2>
+              <p style={{ lineHeight: '1.8', marginBottom: '1.5rem', fontSize: '1.05rem', color: 'rgba(0,0,0,0.7)' }}>
                 Revdix Exim LLP is a premier export-import company dedicated to bridging the global market.
                 With years of industry expertise, we specialize in delivering high-quality products across
                 multiple categories, ensuring excellence and reliability in every transaction.
               </p>
-              <p style={{ lineHeight: '1.8', marginBottom: '2rem' }}>
+              <p style={{ lineHeight: '1.8', marginBottom: '2rem', color: 'rgba(0,0,0,0.7)' }}>
                 Our commitment is to facilitate seamless international trade by adhering to global standards
                 and building long-term partnerships with our clients worldwide.
               </p>
               <a href="#about" className="btn-premium btn-primary">Read More</a>
             </div>
-            <div style={{ position: 'relative', borderRadius: '15px', overflow: 'hidden', boxShadow: 'var(--shadow-premium)' }}>
-              {/* Placeholder for About Image */}
-              <div style={{ background: '#f0f0f0', height: '450px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: '1.2rem', color: '#999' }}>[Company Workspace Image]</span>
-              </div>
+            <div style={{ position: 'relative', borderRadius: '15px', overflow: 'hidden', boxShadow: 'var(--shadow-premium)', height: '450px' }}>
+              <Image
+                src="/images/company_workspace.jpeg"
+                alt="Revdix Company Workspace"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
             </div>
           </div>
         </div>
@@ -180,11 +285,11 @@ export default function Home() {
 
       {/* What We Do (Dark Overlay Section) */}
       <section id="services" className="section-padding" style={{ position: 'relative', background: 'url("/images/website-bg.jpg") center/cover fixed' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,31,63,0.85)' }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 163, 108, 0.9)' }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '3rem' }}>What We Do</h2>
-            <div style={{ width: '60px', height: '3px', background: 'var(--secondary-color)', margin: '1rem auto' }}></div>
+            <h2 style={{ fontSize: '3.5rem', color: '#fff' }}>What We Do</h2>
+            <div style={{ width: '60px', height: '3px', background: '#fff', margin: '1rem auto' }}></div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
             {[
@@ -194,10 +299,12 @@ export default function Home() {
               { title: "Trading & Consultancy", desc: "Expert advice on international trade regulations and logistics.", icon: "📈" }
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-                <div style={{ background: 'var(--secondary-color)', width: '60px', height: '60px', borderRadius: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.8rem', flexShrink: 0 }}>{item.icon}</div>
+                <div style={{ position: 'relative', width: '70px', height: '70px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
+                  <Image src={[`/images/corousel-2.jpg`, `/images/corousel-5.jpg`, `/images/corousel-1.jpg`, `/images/corousel-4.jpg`][i % 4]} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                </div>
                 <div>
-                  <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem' }}>{item.title}</h3>
-                  <p style={{ opacity: '0.8', lineHeight: '1.6' }}>{item.desc}</p>
+                  <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem', color: '#fff' }}><span className="text-royal">#</span> {item.title}</h3>
+                  <p style={{ opacity: '0.95', lineHeight: '1.6', color: '#fff' }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -209,10 +316,10 @@ export default function Home() {
       <section id="export" className="section-padding">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>What We Export</h2>
-            <div style={{ width: '60px', height: '3px', background: 'var(--secondary-color)', margin: '1rem auto' }}></div>
+            <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>What We <span className="text-royal">Export</span></h2>
+            <div className="bg-royal" style={{ width: '80px', height: '4px', margin: '1.5rem auto' }}></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem' }}>
             {[
               "Fruits & Vegetables", "Food Products", "Spices Products",
               "Household Products", "Handicraft Products", "Paper Products",
@@ -220,10 +327,13 @@ export default function Home() {
               "Ceramic Products", "Construction Materials", "Packaging Products"
             ].map((product, i) => (
               <div key={i} className="product-card">
-                <div className="product-image">
-                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
-                    [Image: {product}]
-                  </div>
+                <div className="product-image" style={{ position: 'relative', height: '250px' }}>
+                  <Image
+                    src={[`/images/corousel-1.jpg`, `/images/corousel-2.jpg`, `/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-5.jpg`][i % 5]}
+                    alt={product}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
                 <div className="product-info">
                   <h3 style={{ fontSize: '1.2rem', color: 'var(--primary-color)', marginBottom: '0.5rem' }}>{product}</h3>
@@ -240,11 +350,18 @@ export default function Home() {
       <section id="gallery" className="section-padding" style={{ background: 'var(--primary-color)', color: '#fff' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <h2 style={{ fontSize: '2.5rem' }}>Business Gallery</h2>
+            <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Business Gallery</h2>
           </div>
           <div className="gallery-grid">
             {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-              <div key={i} style={{ height: '200px', background: 'rgba(255,255,255,0.1)', borderRadius: '10px' }}></div>
+              <div key={i} style={{ position: 'relative', height: '240px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
+                <Image
+                  src={[`/images/corousel-2.jpg`, `/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-5.jpg`, `/images/corousel-1.jpg`][(i - 1) % 5]}
+                  alt={`Gallery ${i}`}
+                  fill
+                  style={{ objectFit: 'cover', opacity: 0.8 }}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -254,7 +371,8 @@ export default function Home() {
       <section className="section-padding">
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-color)' }}>Why You Choose Us</h2>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-color)' }}>Why You <span className="text-royal">Choose Us</span></h2>
+            <div className="bg-royal" style={{ width: '50px', height: '3px', margin: '1rem auto' }}></div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem' }}>
             {[
@@ -266,86 +384,85 @@ export default function Home() {
               { title: "Customer Focused", icon: "❤️" }
             ].map((item, i) => (
               <div key={i} className="why-card">
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{item.icon}</div>
-                <h3 style={{ fontSize: '1.2rem' }}>{item.title}</h3>
+                <div style={{ position: 'relative', height: '180px', width: '100%', marginBottom: '1.5rem', borderRadius: '10px', overflow: 'hidden' }}>
+                  <Image src={[`/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-1.jpg`, `/images/corousel-2.jpg`, `/images/corousel-5.jpg`, `/images/corousel-3.jpg`][i % 6]} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                </div>
+                <h3 style={{ fontSize: '1.2rem', color: 'var(--text-dark)' }}>{item.title}</h3>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding" style={{ background: 'url("/images/website-bg.jpg") center/cover fixed' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem', color: '#fff' }}>
-            <h2 style={{ fontSize: '2.5rem' }}>Love from Clients</h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-            {[1, 2, 3].map(i => (
-              <div key={i} className="testimonial-card">
-                <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', opacity: '0.8' }}>
-                  "Highly professional service. They made our import process completely hassle-free and ensured quality at every step."
-                </p>
-                <div style={{ color: 'var(--secondary-color)', marginBottom: '1rem' }}>★★★★★</div>
-                <div style={{ fontWeight: 'bold' }}>Client Name</div>
-                <div style={{ fontSize: '0.8rem', opacity: '0.6' }}>Business Owner</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Client Review Carousel */}
+      <ReviewSection />
 
       {/* Membership & Certification */}
       <section className="section-padding">
         <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ marginBottom: '4rem' }}>Membership & Certification</h2>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '5rem', opacity: '0.5' }}>
-            <span style={{ fontSize: '3rem' }}>📜</span>
-            <span style={{ fontSize: '3rem' }}>🎖️</span>
-            <span style={{ fontSize: '3rem' }}>🏛️</span>
+          <h2 style={{ marginBottom: '4rem', color: 'var(--primary-color)' }}>Membership & <span className="text-royal">Certification</span></h2>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '5rem', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: '120px', height: '80px', opacity: 0.8 }}>
+              <Image src="/images/revdix logo.png" alt="Certification 1" fill style={{ objectFit: 'contain', filter: 'grayscale(1)' }} />
+            </div>
+            <div style={{ position: 'relative', width: '120px', height: '80px', opacity: 0.8 }}>
+              <Image src="/images/revdix_detail_page.jpeg" alt="Certification 2" fill style={{ objectFit: 'contain', filter: 'grayscale(1)' }} />
+            </div>
+            <div style={{ position: 'relative', width: '120px', height: '80px', opacity: 0.8 }}>
+              <Image src="/images/corousel-4.jpg" alt="Certification 3" fill style={{ objectFit: 'contain', filter: 'grayscale(1)' }} />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Expanded Footer */}
-      <footer style={{ background: '#0a0a0a', color: '#fff', padding: '6rem 0 2rem 0' }}>
+      <footer style={{ background: '#0a0a0a', color: '#fff', padding: '6rem 0 3rem 0' }}>
         <div className="container">
           <div className="footer-grid">
             <div>
-              <Image src="/images/revdix logo wo bg .png" alt="Logo" width={140} height={50} style={{ filter: 'brightness(0) invert(1)', marginBottom: '1.5rem' }} />
-              <p style={{ opacity: '0.6', lineHeight: '1.8' }}>
-                Your global partner for efficient and reliable import-export services. Connecting businesses beyond borders.
+              <Image
+                src="/images/revdix logo wo bg .png"
+                alt="Logo"
+                width={200}
+                height={70}
+                style={{
+                  objectFit: 'contain',
+                  marginBottom: '2rem'
+                }}
+              />
+              <p style={{ opacity: '0.6', lineHeight: '1.8', fontSize: '1rem' }}>
+                Your global partner for efficient and reliable import-export services. Connecting businesses beyond borders with excellence and transparency.
               </p>
             </div>
             <div>
-              <h4 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>Quick Links</h4>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', opacity: '0.7' }}>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact Us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>Our Services</h4>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', opacity: '0.7' }}>
-                <li><a href="#">Import</a></li>
-                <li><a href="#">Export</a></li>
-                <li><a href="#">Sourcing</a></li>
-                <li><a href="#">Consultancy</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>Contact Us</h4>
+              <h4 style={{ marginBottom: '2rem', color: '#fff', fontSize: '1.2rem' }}>Quick Links</h4>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', opacity: '0.7' }}>
-                <li>📍 Surat, Gujarat, India</li>
-                <li>📞 +91 000 000 0000</li>
-                <li>📧 info@revdixexim.com</li>
+                <li><a href="#" className="footer-link">Home</a></li>
+                <li><a href="#" className="footer-link">About Us</a></li>
+                <li><a href="#" className="footer-link">Gallery</a></li>
+                <li><a href="#" className="footer-link">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: '2rem', color: '#fff', fontSize: '1.2rem' }}>Our Services</h4>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', opacity: '0.7' }}>
+                <li><a href="#" className="footer-link">Import Services</a></li>
+                <li><a href="#" className="footer-link">Export Solutions</a></li>
+                <li><a href="#" className="footer-link">Global Sourcing</a></li>
+                <li><a href="#" className="footer-link">Trade Consultancy</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: '2rem', color: '#fff', fontSize: '1.2rem' }}>Contact Info</h4>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', opacity: '0.7' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}><MapPin size={18} className="text-secondary" /> Surat, Gujarat, India</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}><Phone size={18} className="text-secondary" /> +91 000 000 0000</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}><Mail size={18} className="text-secondary" /> info@revdixexim.com</li>
               </ul>
             </div>
           </div>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', textAlign: 'center', opacity: '0.5', fontSize: '0.9rem' }}>
-            © 2026 Revdix Exim LLP. Created with Excellence.
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '3rem', marginTop: '1rem', textAlign: 'center', opacity: '0.6', fontSize: '0.95rem' }}>
+            © {new Date().getFullYear()} Revdix Exim LLP. All Rights Reserved. Designed with Excellence.
           </div>
         </div>
       </footer>
