@@ -285,7 +285,7 @@ export default function Home() {
 
       {/* What We Do (Dark Overlay Section) */}
       <section id="services" className="section-padding" style={{ position: 'relative', background: 'url("/images/website-bg.jpg") center/cover fixed' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: '#0b8552' }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(11, 133, 82, 0.85)' }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <h2 style={{ fontSize: '3.5rem', color: '#fff' }}>What We Do</h2>
@@ -347,15 +347,16 @@ export default function Home() {
       </section>
 
       {/* Business Gallery */}
-      <section id="gallery" className="section-padding" style={{ background: 'var(--primary-color)', color: '#fff' }}>
-        <div className="container">
+      <section id="gallery" className="section-padding" style={{ position: 'relative', background: 'url("/images/website-bg.jpg") center/cover fixed', color: '#fff' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(11, 133, 82, 0.85)' }}></div>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Business Gallery</h2>
           </div>
           <div className="gallery-grid">
             {[
-              "Fruits & Vegetables.jpg", "Spices Products.jpg", "Handicraft Products.jpg",
-              "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg",
+              "Fruits & Vegetables.jpg", "Spices Products.jpg", "Handicraft Products.jpg", 
+              "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg", 
               "Ceramic Products.jpg", "Furniture.png"
             ].map((img, i) => (
               <div key={i} style={{ position: 'relative', height: '240px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
