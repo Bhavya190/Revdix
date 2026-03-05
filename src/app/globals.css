@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #00A36C;
+  --primary-color: #0b8552;
   /* Emerald Green */
   --secondary-color: #4169E1;
   /* Royal Blue */
@@ -232,7 +232,7 @@ ul {
 .btn-primary:hover {
   background: var(--secondary-color);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 163, 108, 0.3);
+  box-shadow: 0 5px 15px rgba(11, 133, 82, 0.3);
 }
 
 .btn-outline {
@@ -307,6 +307,59 @@ ul {
   grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
   gap: 4rem;
   margin-bottom: 4rem;
+}
+
+.why-card {
+  background: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: var(--transition-smooth);
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border-color: var(--secondary-color);
+}
+
+.why-card h3 {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.why-card p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 992px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {

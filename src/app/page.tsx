@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Facebook, Twitter, Linkedin, Instagram, Quote, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Quote, Mail, Phone, MapPin, Ship, Package, Search, BarChart3, ShieldCheck, Zap, Globe2, Clock, Heart, Users, Award, CheckCircle2 } from "lucide-react";
 
 const carouselItems = [
   {
@@ -285,7 +285,7 @@ export default function Home() {
 
       {/* What We Do (Dark Overlay Section) */}
       <section id="services" className="section-padding" style={{ position: 'relative', background: 'url("/images/website-bg.jpg") center/cover fixed' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0, 163, 108, 0.9)' }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: '#0b8552' }}></div>
         <div className="container" style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
           <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
             <h2 style={{ fontSize: '3.5rem', color: '#fff' }}>What We Do</h2>
@@ -293,14 +293,14 @@ export default function Home() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
             {[
-              { title: "Export", desc: "Global distribution of premium Indian products to international markets.", icon: "🚢" },
-              { title: "Import", desc: "Sourcing high-quality global goods for domestic consumption.", icon: "📦" },
-              { title: "Sourcing Agent", desc: "Identifying and vetting the best suppliers for your specific needs.", icon: "🔍" },
-              { title: "Trading & Consultancy", desc: "Expert advice on international trade regulations and logistics.", icon: "📈" }
+              { title: "Export", desc: "Global distribution of premium Indian products to international markets.", icon: <Ship size={32} /> },
+              { title: "Import", desc: "Sourcing high-quality global goods for domestic consumption.", icon: <Package size={32} /> },
+              { title: "Sourcing Agent", desc: "Identifying and vetting the best suppliers for your specific needs.", icon: <Search size={32} /> },
+              { title: "Trading & Consultancy", desc: "Expert advice on international trade regulations and logistics.", icon: <BarChart3 size={32} /> }
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-                <div style={{ position: 'relative', width: '70px', height: '70px', borderRadius: '10px', overflow: 'hidden', flexShrink: 0 }}>
-                  <Image src={[`/images/corousel-2.jpg`, `/images/corousel-5.jpg`, `/images/corousel-1.jpg`, `/images/corousel-4.jpg`][i % 4]} alt={item.title} fill style={{ objectFit: 'cover' }} />
+                <div className="bg-royal" style={{ color: '#ffffff', width: '60px', height: '60px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {item.icon}
                 </div>
                 <div>
                   <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem', color: '#fff' }}><span className="text-royal">#</span> {item.title}</h3>
@@ -329,7 +329,7 @@ export default function Home() {
               <div key={i} className="product-card">
                 <div className="product-image" style={{ position: 'relative', height: '250px' }}>
                   <Image
-                    src={[`/images/corousel-1.jpg`, `/images/corousel-2.jpg`, `/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-5.jpg`][i % 5]}
+                    src={`/images/${product}${product === 'Furniture' ? '.png' : '.jpg'}`}
                     alt={product}
                     fill
                     style={{ objectFit: 'cover' }}
@@ -353,13 +353,17 @@ export default function Home() {
             <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Business Gallery</h2>
           </div>
           <div className="gallery-grid">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+            {[
+              "Fruits & Vegetables.jpg", "Spices Products.jpg", "Handicraft Products.jpg",
+              "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg",
+              "Ceramic Products.jpg", "Furniture.png"
+            ].map((img, i) => (
               <div key={i} style={{ position: 'relative', height: '240px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
                 <Image
-                  src={[`/images/corousel-2.jpg`, `/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-5.jpg`, `/images/corousel-1.jpg`][(i - 1) % 5]}
-                  alt={`Gallery ${i}`}
+                  src={`/images/${img}`}
+                  alt={`Gallery Image ${i + 1}`}
                   fill
-                  style={{ objectFit: 'cover', opacity: 0.8 }}
+                  style={{ objectFit: 'cover', opacity: 0.9 }}
                 />
               </div>
             ))}
@@ -374,20 +378,19 @@ export default function Home() {
             <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-color)' }}>Why You <span className="text-royal">Choose Us</span></h2>
             <div className="bg-royal" style={{ width: '50px', height: '3px', margin: '1rem auto' }}></div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem' }}>
+          <div className="why-grid">
             {[
-              { title: "Reliability", icon: "🤝" },
-              { title: "Expertise", icon: "💎" },
-              { title: "Global Reach", icon: "🌎" },
-              { title: "Quality Control", icon: "⚖️" },
-              { title: "On-time Delivery", icon: "⏱️" },
-              { title: "Customer Focused", icon: "❤️" }
+              { title: "Reliability", desc: "Unwavering commitment to timely deliveries and consistent service quality across all global borders.", icon: <ShieldCheck size={40} /> },
+              { title: "Expertise", desc: "Years of specialized experience in international trade regulations and logistics management.", icon: <Award size={40} /> },
+              { title: "Global Reach", desc: "A vast network of international partners ensuring seamless export-import operations worldwide.", icon: <Globe2 size={40} /> },
+              { title: "Quality Control", desc: "Rigorous inspection and quality assurance protocols to ensure only the best products reach our clients.", icon: <CheckCircle2 size={40} /> },
+              { title: "On-time Delivery", desc: "Optimized logistics and supply chain management for the fastest possible shipping turnarounds.", icon: <Clock size={40} /> },
+              { title: "Customer Focused", desc: "Tailored solutions and dedicated support to meet the unique needs of every business partner.", icon: <Heart size={40} /> }
             ].map((item, i) => (
               <div key={i} className="why-card">
-                <div style={{ position: 'relative', height: '180px', width: '100%', marginBottom: '1.5rem', borderRadius: '10px', overflow: 'hidden' }}>
-                  <Image src={[`/images/corousel-3.jpg`, `/images/corousel-4.jpg`, `/images/corousel-1.jpg`, `/images/corousel-2.jpg`, `/images/corousel-5.jpg`, `/images/corousel-3.jpg`][i % 6]} alt={item.title} fill style={{ objectFit: 'cover' }} />
-                </div>
-                <h3 style={{ fontSize: '1.2rem', color: 'var(--text-dark)' }}>{item.title}</h3>
+                <div className="text-royal" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
+                <h3 style={{ color: 'var(--text-dark)' }}>{item.title}</h3>
+                <p>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -398,7 +401,7 @@ export default function Home() {
       <ReviewSection />
 
       {/* Membership & Certification */}
-      <section className="section-padding">
+      {/* <section className="section-padding">
         <div className="container" style={{ textAlign: 'center' }}>
           <h2 style={{ marginBottom: '4rem', color: 'var(--primary-color)' }}>Membership & <span className="text-royal">Certification</span></h2>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '5rem', alignItems: 'center' }}>
@@ -413,7 +416,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Expanded Footer */}
       <footer style={{ background: '#0a0a0a', color: '#fff', padding: '6rem 0 3rem 0' }}>
