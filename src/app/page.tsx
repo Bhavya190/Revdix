@@ -64,6 +64,37 @@ const reviews = [
   }
 ];
 
+function ScrollReveal({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  const [ref, setRef] = useState<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (!ref) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(ref);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(ref);
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return (
+    <div
+      ref={setRef}
+      className={`${className} scroll-reveal ${isVisible ? 'in-view' : ''}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 function CarouselSection() {
   const [current, setCurrent] = useState(0);
 
@@ -241,7 +272,6 @@ export default function Home() {
             <button
               className="mobile-menu-toggle"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              style={{ color: (scrolled || isMenuOpen) ? 'var(--text-dark)' : '#fff' }}
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -335,21 +365,23 @@ export default function Home() {
               "Apparels & Textile", "Furniture", "Metal Products",
               "Ceramic Products", "Construction Materials", "Packaging Products"
             ].map((product, i) => (
-              <div key={i} className="product-card">
-                <div className="product-image">
-                  <Image
-                    src={`/images/${product}${product === 'Furniture' ? '.png' : '.jpg'}`}
-                    alt={product}
-                    fill
-                    className="obj-cover"
-                  />
+              <ScrollReveal key={i}>
+                <div className="product-card">
+                  <div className="product-image">
+                    <Image
+                      src={`/images/${product}${product === 'Furniture' ? '.png' : '.jpg'}`}
+                      alt={product}
+                      fill
+                      className="obj-cover"
+                    />
+                  </div>
+                  <div className="product-info">
+                    <h3>{product}</h3>
+                    <div style={{ borderBottom: '2px solid var(--secondary-color)', width: '40px', margin: '0.5rem auto 1rem auto' }}></div>
+                    <a href="#" className="product-link">View Details →</a>
+                  </div>
                 </div>
-                <div className="product-info">
-                  <h3>{product}</h3>
-                  <div style={{ borderBottom: '2px solid var(--secondary-color)', width: '40px', margin: '0.5rem auto 1rem auto' }}></div>
-                  <a href="#" className="product-link">View Details →</a>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -369,14 +401,16 @@ export default function Home() {
               "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg",
               "Ceramic Products.jpg", "Furniture.png"
             ].map((img, i) => (
-              <div key={i} className="gallery-item gallery-card">
-                <Image
-                  src={`/images/${img}`}
-                  alt={`Gallery Image ${i + 1}`}
-                  fill
-                  className="gallery-image obj-cover"
-                />
-              </div>
+              <ScrollReveal key={i}>
+                <div className="gallery-item gallery-card">
+                  <Image
+                    src={`/images/${img}`}
+                    alt={`Gallery Image ${i + 1}`}
+                    fill
+                    className="gallery-image obj-cover"
+                  />
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
