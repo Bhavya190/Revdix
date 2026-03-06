@@ -208,6 +208,76 @@ function ReviewSection() {
   );
 }
 
+function ContactForm() {
+  return (
+    <section id="contact" className="section-padding contact-section">
+      <div className="container">
+        <div className="section-header">
+          <h4 className="section-subtitle">Get In Touch</h4>
+          <h2 className="section-title">Contact <span className="text-royal">Us Today</span></h2>
+          <div className="section-divider"></div>
+        </div>
+
+        <div className="contact-grid">
+          <div className="contact-info">
+            <div className="contact-info-card">
+              <div className="contact-icon-box">
+                <MapPin size={24} />
+              </div>
+              <div className="contact-info-content">
+                <h4>Our Location</h4>
+                <p>Surat, Gujarat, India</p>
+              </div>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="contact-icon-box">
+                <Mail size={24} />
+              </div>
+              <div className="contact-info-content">
+                <h4>Email Address</h4>
+                <p>info@revdixexim.com</p>
+              </div>
+            </div>
+
+            <div className="contact-info-card">
+              <div className="contact-icon-box">
+                <Phone size={24} />
+              </div>
+              <div className="contact-info-content">
+                <h4>Phone Number</h4>
+                <p>+91 000 000 0000</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-form-wrapper">
+            <form className="contact-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <input type="text" placeholder="Your Name" required />
+                </div>
+                <div className="form-group">
+                  <input type="email" placeholder="Your Email" required />
+                </div>
+              </div>
+              <div className="form-group">
+                <input type="text" placeholder="Subject" required />
+              </div>
+              <div className="form-group">
+                <textarea placeholder="Your Message" rows={5} required></textarea>
+              </div>
+              <button type="submit" className="btn-send-message">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -377,7 +447,7 @@ export default function Home() {
                   </div>
                   <div className="product-info">
                     <h3>{product}</h3>
-                    <div style={{ borderBottom: '2px solid var(--secondary-color)', width: '40px', margin: '0.5rem auto 1rem auto' }}></div>
+                    <div style={{ borderBottom: '2px solid var(--primary-color)', width: '40px', margin: '0.5rem auto 1rem auto' }}></div>
                     <a href="#" className="product-link">View Details →</a>
                   </div>
                 </div>
@@ -442,8 +512,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Client Review Carousel */}
-      <ReviewSection />
+      {/* Client Preview Contact */}
+      <ContactForm />
 
       {/* Membership & Certification */}
       {/* <section className="section-padding">
