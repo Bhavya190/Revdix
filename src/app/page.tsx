@@ -305,7 +305,7 @@ export default function Home() {
                   {item.icon}
                 </div>
                 <div>
-                  <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem', color: '#fff' }}><span className="text-royal">#</span> {item.title}</h3>
+                  <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem', color: '#fff' }}>{item.title}</h3>
                   <p style={{ opacity: '0.95', lineHeight: '1.6', color: '#fff' }}>{item.desc}</p>
                 </div>
               </div>
@@ -329,7 +329,7 @@ export default function Home() {
               "Ceramic Products", "Construction Materials", "Packaging Products"
             ].map((product, i) => (
               <div key={i} className="product-card">
-                <div className="product-image" style={{ position: 'relative', height: '250px' }}>
+                <div className="product-image">
                   <Image
                     src={`/images/${product}${product === 'Furniture' ? '.png' : '.jpg'}`}
                     alt={product}
@@ -338,9 +338,9 @@ export default function Home() {
                   />
                 </div>
                 <div className="product-info">
-                  <h3 style={{ fontSize: '1.2rem', color: 'var(--primary-color)', marginBottom: '0.5rem' }}>{product}</h3>
+                  <h3>{product}</h3>
                   <div style={{ borderBottom: '2px solid var(--secondary-color)', width: '40px', margin: '0.5rem auto 1rem auto' }}></div>
-                  <a href="#" style={{ color: 'var(--secondary-color)', fontSize: '0.9rem', fontWeight: 'bold' }}>View Details →</a>
+                  <a href="#" className="product-link">View Details →</a>
                 </div>
               </div>
             ))}
@@ -354,6 +354,7 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Business Gallery</h2>
+            <div style={{ width: '60px', height: '3px', background: '#fff', margin: '1rem auto' }}></div>
           </div>
           <div className="gallery-grid">
             {[
