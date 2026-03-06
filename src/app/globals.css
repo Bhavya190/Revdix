@@ -29,6 +29,7 @@ body {
   color: var(--text-dark);
   background: #ffffff;
   font-weight: 600;
+  scroll-behavior: smooth;
   /* Bold Sans Serif */
 }
 
@@ -433,7 +434,8 @@ ul {
   transform: translateX(-50%);
   display: flex;
   gap: 1rem;
-  z-index: 10;
+  z-index: 200;
+  pointer-events: auto;
 }
 
 .carousel-dot {
@@ -457,7 +459,7 @@ ul {
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-  z-index: 10;
+  z-index: 200;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -465,6 +467,7 @@ ul {
   align-items: center;
   justify-content: center;
   transition: 0.3s;
+  pointer-events: auto;
 }
 
 .carousel-btn.prev {
@@ -586,7 +589,7 @@ ul {
 .hero-content .subtitle,
 .hero-content h1,
 .hero-content .desc,
-.hero-content .btn-group {
+.hero-content .hero-btn-group {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
@@ -610,7 +613,7 @@ ul {
   transition-delay: 1.2s;
 }
 
-.hero-slide.active .hero-content .btn-group {
+.hero-slide.active .hero-content .hero-btn-group {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 1.4s;

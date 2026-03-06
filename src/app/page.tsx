@@ -464,7 +464,7 @@ export default function Home() {
       </section> */}
 
       {/* Expanded Footer */}
-      <footer className="site-footer">
+      <footer id="contact" className="site-footer">
         <div className="container">
           <div className="footer-grid">
             <div>
