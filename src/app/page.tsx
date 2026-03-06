@@ -314,14 +314,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What We Export Section */}
       <section id="export" className="section-padding">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)' }}>What We <span className="text-royal">Export</span></h2>
-            <div className="bg-royal" style={{ width: '80px', height: '4px', margin: '1.5rem auto' }}></div>
+        <div className="container sticky-grid-container">
+          {/* Sticky Side Header */}
+          <div className="sticky-side-header">
+            <h4 style={{ color: 'var(--primary-color)', marginBottom: '1rem', letterSpacing: '0.2rem' }}>Our Collection</h4>
+            <h2 style={{ fontSize: '3rem', color: 'var(--primary-color)', lineHeight: '1.2' }}>What We <span className="text-royal">Export</span></h2>
+            <div className="bg-royal" style={{ width: '60px', height: '4px', margin: '2rem 0' }}></div>
+            <p style={{ opacity: 0.7, lineHeight: '1.8', fontSize: '1.05rem', maxWidth: '300px' }}>
+              Discover our wide range of premium quality products sourced from the best manufacturers across India,
+              meeting global standards for excellence.
+            </p>
+            <div style={{ marginTop: '3rem' }}>
+              <a href="#contact" className="btn-premium btn-primary" style={{ padding: '1rem 2rem' }}>Enquire Now</a>
+            </div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem' }}>
+
+          {/* Scrolling Grid */}
+          <div className="scrolling-grid">
             {[
               "Fruits & Vegetables", "Food Products", "Spices Products",
               "Household Products", "Handicraft Products", "Paper Products",
