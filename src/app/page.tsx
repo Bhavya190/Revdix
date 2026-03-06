@@ -95,11 +95,11 @@ function CarouselSection() {
             style={{ backgroundImage: `url("${item.image}")` }}
           />
           <div className="hero-overlay"></div>
-          <div className="container" style={{ zIndex: 2 }}>
-            <p style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: '800', marginBottom: '1.5rem', fontSize: '1.1rem' }}>{item.subtitle}</p>
+          <div className="container hero-content" style={{ zIndex: 2 }}>
+            <p className="subtitle" style={{ color: 'var(--secondary-color)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: '800', marginBottom: '1.5rem', fontSize: '1.1rem' }}>{item.subtitle}</p>
             <h1 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', color: '#fff', textShadow: '2px 2px 10px rgba(0,0,0,0.3)' }}>{item.title}</h1>
-            <p style={{ fontSize: '1.3rem', maxWidth: '700px', margin: '0 auto 3rem auto', opacity: '0.95', color: '#fff' }}>{item.desc}</p>
-            <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+            <p className="desc" style={{ fontSize: '1.3rem', maxWidth: '700px', margin: '0 auto 3rem auto', opacity: '0.95', color: '#fff' }}>{item.desc}</p>
+            <div className="btn-group" style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
               <a href="#services" className="btn-premium btn-primary">Our Services</a>
               <a href="#contact" className="btn-premium btn-outline">Contact Us</a>
             </div>
@@ -145,13 +145,13 @@ function ReviewSection() {
   return (
     <section className="section-padding" style={{ background: '#fcfcfc' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h4 style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}>Testimonials</h4>
+        <div style={{ textAlign: 'center', marginBottom: '4rem', userSelect: 'none' }}>
+          <h4 style={{ color: 'var(--primary-color)', marginBottom: '1rem', letterSpacing: '0.2rem' }}>Testimonials</h4>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--text-dark)' }}>Client Success Stories</h2>
           <div style={{ width: '60px', height: '3px', background: 'var(--primary-color)', margin: '1rem auto' }}></div>
         </div>
 
-        <div className="reviews-container">
+        <div className="reviews-container" style={{ position: 'relative', overflow: 'hidden', minHeight: '480px' }}>
           {reviews.map((review, index) => (
             <div key={index} className={`review-slide ${index === currentReview ? 'active' : ''}`}>
               <div className="testimonial-card">
@@ -165,23 +165,25 @@ function ReviewSection() {
               </div>
             </div>
           ))}
+        </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)' }}>
-            {reviews.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => setCurrentReview(i)}
-                style={{
-                  width: '12px',
-                  height: '12px',
-                  borderRadius: '50%',
-                  background: i === currentReview ? 'var(--primary-color)' : '#ddd',
-                  cursor: 'pointer',
-                  transition: '0.3s'
-                }}
-              />
-            ))}
-          </div>
+        {/* Improved Navigation Dots */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem', marginTop: '3rem' }}>
+          {reviews.map((_, i) => (
+            <div
+              key={i}
+              onClick={() => setCurrentReview(i)}
+              style={{
+                width: i === currentReview ? '32px' : '10px',
+                height: '10px',
+                borderRadius: '10px',
+                background: i === currentReview ? 'var(--primary-color)' : '#e0e0e0',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: i === currentReview ? '0 4px 10px rgba(11, 133, 82, 0.2)' : 'none'
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -355,11 +357,11 @@ export default function Home() {
           </div>
           <div className="gallery-grid">
             {[
-              "Fruits & Vegetables.jpg", "Spices Products.jpg", "Handicraft Products.jpg", 
-              "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg", 
+              "Fruits & Vegetables.jpg", "Spices Products.jpg", "Handicraft Products.jpg",
+              "Construction Materials.jpg", "Metal Products.jpg", "Food Products.jpg",
               "Ceramic Products.jpg", "Furniture.png"
             ].map((img, i) => (
-              <div key={i} style={{ position: 'relative', height: '240px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
+              <div key={i} className="gallery-item" style={{ position: 'relative', height: '240px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', overflow: 'hidden' }}>
                 <Image
                   src={`/images/${img}`}
                   alt={`Gallery Image ${i + 1}`}
